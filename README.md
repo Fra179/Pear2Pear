@@ -1,3 +1,5 @@
+<img src="website/static/assets/logo.webp" width="200" alt="Pear2Pear logo" title="Logo" >
+
 # Pear2Pear.cc
 
 Pear2Pear.cc is a peer-to-peer (P2P) file-sharing web application that allows users to transfer files directly between their devices without relying on third-party servers. The application uses WebRTC for the p2p file transfers and a signaling server written in go, to allow the initial connection.
