@@ -1,0 +1,274 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+}
+.badge-outline {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: currentColor;
+    color: hsl(215.4 16.3% 46.9%);
+}
+.progress-container {
+    position: relative;
+    height: 0.5rem;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 9999px;
+    background-color: hsl(210 40% 96.1%);
+}
+.progress-indicator {
+    height: 100%;
+    width: 100%;
+    background-color: hsl(222.2 47.4% 11.2%);
+    transition: transform 0.2s;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.tab-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: hsl(210 40% 96.1%);
+    padding: 0.25rem;
+}
+.tab {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.tab.active {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.dark .tab.active {
+    background-color: hsl(222.2 47.4% 11.2%);
+}
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.dark .card {
+    background-color: hsl(224 71% 4%);
+    color: white;
+}
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+}
+.button-primary {
+    background-color: hsl(222.2 47.4% 11.2%);
+    color: white;
+}
+.button-primary:hover:not(:disabled) {
+    background-color: hsl(222.2 47.4% 9%);
+}
+.button-outline {
+    background-color: transparent;
+    border: 1px solid hsl(215.4 16.3% 46.9%);
+    color: hsl(215.4 16.3% 46.9%);
+}
+.button-outline:hover:not(:disabled) {
+    background-color: hsl(210 40% 96.1%);
+}
+.button-danger {
+    background-color: hsl(0, 84%, 60%);
+    color: white;
+}
+.button-danger:hover:not(:disabled) {
+    background-color: hsl(0, 84%, 50%);
+}
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.input {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid hsl(214.3 31.8% 91.4%);
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    background-color: white;
+}
+.dark .input {
+    background-color: hsl(224 71% 4%);
+    border-color: hsl(215.4 16.3% 30%);
+    color: white;
+}
+.input:focus {
+    outline: none;
+    border-color: hsl(222.2 47.4% 11.2%);
+    box-shadow: 0 0 0 1px hsl(222.2 47.4% 11.2%);
+}
+.input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Modal/Popup Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(10px);
+    transition: transform 0.2s;
+}
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+.dark .modal {
+    background-color: hsl(224 71% 4%);
+    color: white;
+    border: 1px solid hsl(215.4 16.3% 30%);
+}
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid hsl(214.3 31.8% 91.4%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dark .modal-header {
+    border-color: hsl(215.4 16.3% 30%);
+}
+.modal-body {
+    padding: 1rem;
+}
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid hsl(214.3 31.8% 91.4%);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+.dark .modal-footer {
+    border-color: hsl(215.4 16.3% 30%);
+}
+.file-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid hsl(214.3 31.8% 91.4%);
+}
+.dark .file-info-item {
+    border-color: hsl(215.4 16.3% 30%);
+}
+.file-info-item:last-child {
+    border-bottom: none;
+}
+
+/*
+#copy-id-btn:active {
+    transform: scale(0.95);
+    /* Let's add a sparkling effect to the button *
+    animation: sparkle 0.3s infinite;
+} */
+
+.copy-btn {
+    position: relative;
+}
+
+button:enabled:active {
+    transform: scale(0.95);
+}
+
+.copy-btn::after {
+    content: "Copied!";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #28a745;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+@keyframes moveUpFadeOut {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.copy-btn.show-msg::after {
+    opacity: 1;
+    animation: moveUpFadeOut 1s forwards;
+}
+
+@media screen and (max-width: 450px) {
+    .page-heading {
+        display: block !important;
+    }
+
+    .page-heading > * {
+        margin-bottom: 1rem;
+    }
+
+    .page-heading > :last-child {
+        margin-bottom: 0;
+    }
+}

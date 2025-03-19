@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share files directly with other users">
+    <meta name="keywords" content="file sharing, p2p, peer to peer, file transfer">
+    <meta name="author" content="WebDev Simplified">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Let's insert social media meta tags -->
+    <meta property="og:title" content="P2P File Sharing">
+    <meta property="og:description" content="Share files directly with other users">
+    <meta property="og:image" content="static/assets/logo.webp">
+    <meta property="og:url" content="https://pear2pear.cc">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="P2P File Sharing">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image:width" content="376">
+    <meta property="og:image:height" content="600">
+
+    <!-- Favicons  -->
+    <link rel="apple-touch-icon" sizes="57x57" href="static/assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="static/assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="static/assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="static/assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="static/assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="static/assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="static/assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="static/assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- End of Favicons -->
+
+    <link rel="icon" href="static/favicon.ico">
+    <link rel="apple-touch-icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>P2P File Sharing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: 'hsl(222.2 47.4% 11.2%)',
+                            foreground: 'hsl(210 40% 98%)',
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(210 40% 96.1%)',
+                            foreground: 'hsl(222.2 47.4% 11.2%)',
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(210 40% 96.1%)',
+                            foreground: 'hsl(215.4 16.3% 46.9%)',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="static/css/main.css">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4 md:p-8 flex items-center justify-center bg-primary">
+<div class="max-w-4xl mx-auto">
+    <div class="card" style="width: min(calc(100vw - 2rem), 56rem)">
+        <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+            <div class="flex items-center justify-between page-heading">
+                <div class="flex items-center">
+                    <img src="static/assets/logo.webp" alt="P2P File Sharing" class="h-20 mr-4">
+                    <div>
+                        <h1 class="text-2xl font-bold">P2P File Sharing</h1>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Share files directly with other users</p>
+                    </div>
+                </div>
+                <div id="connection-status">
+            <span class="badge badge-outline gap-1">
+              <i class="fa-solid fa-link-slash"></i>
+
+              Disconnected
+            </span>
+                </div>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Attention</p>
+                <p>
+                    This app only works in P2P mode. If you're behind a firewall or NAT, you may not be able to establish a connection.
+                </p>
+            </div>
+            <div class="mb-6">
+                <label for="your-id" class="block text-sm font-medium mb-1">Your ID</label>
+                <div class="flex items-center mt-1.5 gap-2">
+                    <input id="your-id" type="text" readonly class="input font-mono bg-gray-100 dark:bg-gray-800">
+                    <div class="copy-container">
+                        <button id="copy-id-btn" class="copy-btn button button-outline" title="Copy to clipboard">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5">Share this ID with others so they can send you files</p>
+            </div>
+            <div class="mb-6 hidden">
+                <label for="your-id" class="block text-sm font-medium mb-1">Your Shortcode</label>
+                <div class="flex items-center mt-1.5 gap-2">
+                    <input id="your-shortcode" type="text" readonly placeholder="Shortcode expired!"  class="input font-mono bg-gray-100 dark:bg-gray-800">
+                    <button id="copy-shortcode-btn" class="button button-outline" title="Regenerate Shortcode">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5">Generate a shorter, temporary code to use instead of your ID. It lasts 30s</p>
+            </div>
+
+            <div class="mt-6">
+                <div class="tab-list">
+                    <div class="tab active" data-tab="send">Send Files</div>
+                    <div class="tab" data-tab="receive">Receive Files</div>
+                </div>
+
+                <div class="tab-content active space-y-4 mt-4" id="send-tab">
+                    <div>
+                        <label for="receiver-id" class="block text-sm font-medium mb-1">Receiver's ID</label>
+                        <input
+                                id="receiver-id"
+                                type="text"
+                                placeholder="Enter receiver's ID"
+                                class="input font-mono"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="file-upload" class="block text-sm font-medium mb-1">Select File</label>
+                        <div class="mt-1.5">
+                            <input
+                                    id="file-upload"
+                                    type="file"
+                                    class="input cursor-pointer"
+                            >
+                        </div>
+                        <div id="file-info" class="mt-2 hidden">
+                            <span class="badge badge-outline text-xs"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4 hidden" id="receive-tab">
+                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg flex flex-col items-center justify-center text-center">
+                        <div class="h-12 w-12 text-gray-400 mb-4">
+                            <i class="fa-regular fa-user" style="font-size: 48px"></i>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2">Ready to Receive Files</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">Share your ID with others to receive files directly</p>
+                        <div class="copy-container">
+                            <button id="copy-id-receive-btn" class="copy-btn button button-outline">
+                                Copy Your ID
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="progress-container" class="space-y-2 mt-4 hidden">
+                    <div class="flex justify-between text-sm">
+                        <span>Transfer Progress</span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-indicator" style="transform: translateX(-100%)"></div>
+                    </div>
+                    <p id="transfer-status-message" class="text-xs text-gray-500 dark:text-gray-400"></p>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 border-t border-gray-200 dark:border-gray-800 flex justify-between gap-2">
+            <a href="#" class="text-gray-600 text-m text-center mt-1">How does it work?</a>
+            <button id="send-file-btn" class="button button-primary gap-2" onclick="shareFile()">
+                <i class="fa-regular fa-paper-plane h-4 w-4"></i>
+                Send File
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal/Popup -->
+<div id="confirmation-modal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="text-lg font-medium">Confirm File Transfer</h3>
+            <button id="close-modal-btn" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="mb-4">Are you sure you want to send this file?</p>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+                <div class="file-info-item">
+                    <span class="font-medium">Filename:</span>
+                    <span id="modal-filename" class="text-right"></span>
+                </div>
+                <div class="file-info-item">
+                    <span class="font-medium">File size:</span>
+                    <span id="modal-filesize" class="text-right"></span>
+                </div>
+                <div class="file-info-item">
+                    <span class="font-medium">File type:</span>
+                    <span id="modal-filetype" class="text-right"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-transfer-btn" class="button button-outline">Cancel</button>
+            <button id="confirm-transfer-btn" class="button button-primary">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script defer src="static/js/elements.js"></script>
+<script defer src="static/js/ui-animation.js"></script>
+<script defer src="static/js/main.js"></script>
+</body>
+</html>

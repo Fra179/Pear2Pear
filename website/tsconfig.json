@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
+    "outDir": "static/js",
+    "strict": true,
+    "esModuleInterop": true,
+    "target": "ES2015"
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}
